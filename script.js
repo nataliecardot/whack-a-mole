@@ -25,4 +25,8 @@ function peep() {
   const hole = randomHole(holes);
   // Sets top to 0 in CSS, which animates it because by default it has top of 100%
   hole.classList.add('up');
+  // Make mole go back down after random time elapsed
+  setTimeout(() => {
+    hole.classList.remove('up');
+  }, time);
 }
