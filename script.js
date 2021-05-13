@@ -2,6 +2,7 @@ const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
 const moles = document.querySelectorAll('.mole');
 let lastHole;
+let timeUp = false;
 
 function randomTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -25,8 +26,8 @@ function peep() {
   const hole = randomHole(holes);
   // Sets top to 0 in CSS, which animates it because by default it has top of 100%
   hole.classList.add('up');
-  // Make mole go back down after random time elapsed
   setTimeout(() => {
     hole.classList.remove('up');
+    if (!timeUp) peep();
   }, time);
 }
