@@ -6,6 +6,7 @@ const timeLeft = document.querySelector('.time-left');
 const moles = document.querySelectorAll('.mole');
 const btn = document.querySelector('.btn');
 const overlay = document.querySelector('.overlay');
+const overlayMsg = document.querySelector('.overlay p');
 
 let beginTimestamp,
   endTimestamp,
@@ -59,21 +60,22 @@ function startGame() {
   peep();
   let countdown = setInterval(() => {
     timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
-    if (score === winScore) {
-      winGame();
-    }
-    if (endTimestamp - Math.floor(Date.now() / 1000) <= 0) {
+    if (
+      score === winScore ||
+      endTimestamp - Math.floor(Date.now() / 1000) <= 0
+    ) {
       endGame();
     }
   }, 1000);
 }
 
-function winGame() {
-  overlay.style.display = 'flex';
-  endGame();
-}
-
 function endGame() {
+  overlay.style.display = 'flex';
+  if (score === winScore) {
+    overlayMsg.innerText = 'Winner, winner, chicken dinner!';
+  } else {
+    overlayMsg.innerText = 'Butter my butt and call me a biscuit... You lost!';
+  }
   clearInterval(countdown);
   timeLeft.textContent = 0;
   timeUp = true;

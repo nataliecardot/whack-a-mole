@@ -94,8 +94,10 @@ h1 {
 }
 
 .overlay p {
-  font-size: 13rem;
+  font-size: 10rem;
+  max-width: 60%;
   margin: 0 0 2rem;
+  text-align: center;
 }
 
 .overlay button {
