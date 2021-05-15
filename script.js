@@ -4,7 +4,7 @@ const gameInfo = document.querySelector('.game-info');
 const timeLeft = document.querySelector('.time-left');
 const moles = document.querySelectorAll('.mole');
 const btn = document.querySelector('.btn');
-let beginTimestamp, // Dividing by 1000 to get s from ms
+let beginTimestamp,
   endTimestamp,
   countdown,
   lastHole,
@@ -42,9 +42,9 @@ function peep() {
 
 function startGame() {
   scoreBoard.textContent = 0;
-  beginTimestamp = Math.floor(Date.now() / 1000);
+  beginTimestamp = Math.floor(Date.now() / 1000); // Dividing by 1000 to get s from ms
   gameInfo.style.display = 'inline';
-  endTimestamp = beginTimestamp + 5;
+  endTimestamp = beginTimestamp + 15;
   // Setting here in addition to in set interval so time appears in time remaining immediately
   numSecondsRemaining = endTimestamp - Math.floor(Date.now() / 1000);
   timeLeft.textContent = numSecondsRemaining;
