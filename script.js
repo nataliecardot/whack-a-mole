@@ -2,6 +2,7 @@ const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
 const moles = document.querySelectorAll('.mole');
 const startBtn = document.querySelector('.start-btn');
+const restartBtn = document.querySelector('.restart-btn');
 let lastHole,
   timeUp = false,
   score = 0;
@@ -39,10 +40,12 @@ function startGame() {
   timeUp = false;
   score = 0;
   startBtn.style.display = 'none';
+  restartBtn.style.display = 'inline-block';
   peep();
   setTimeout(() => {
     timeUp = true;
     startBtn.style.display = 'inline-block';
+    restartBtn.style.display = 'none';
   }, 20000);
 }
 

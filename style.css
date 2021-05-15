@@ -37,7 +37,7 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
-.start-btn {
+.btn {
   background: white;
   border-radius: 1rem;
   padding: 1.5rem 2rem;
@@ -53,9 +53,13 @@ h1 {
   transition: 0.3s;
 }
 
-.start-btn:hover,
-.start-btn.active {
+.btn:hover,
+.btn.active {
   transform: translateY(-50%) scale(0.9);
+}
+
+.restart-btn {
+  display: none;
 }
 
 .game {
