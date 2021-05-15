@@ -3,8 +3,7 @@ const scoreBoard = document.querySelector('.score');
 const gameInfo = document.querySelector('.game-info');
 const timeLeft = document.querySelector('.time-left');
 const moles = document.querySelectorAll('.mole');
-const startBtn = document.querySelector('.start-btn');
-const restartBtn = document.querySelector('.restart-btn');
+const btn = document.querySelector('.btn');
 let beginTimestamp, // Dividing by 1000 to get s from ms
   endTimestamp,
   countdown,
@@ -51,8 +50,7 @@ function startGame() {
   timeLeft.textContent = numSecondsRemaining;
   timeUp = false;
   score = 0;
-  startBtn.style.display = 'none';
-  restartBtn.style.display = 'inline-block';
+  btn.textContent = 'Restart';
   peep();
   let countdown = setInterval(() => {
     numSecondsRemaining = endTimestamp - Math.floor(Date.now() / 1000);
@@ -68,8 +66,7 @@ function endGame() {
   numSecondsRemaining = 0;
   timeLeft.textContent = numSecondsRemaining;
   timeUp = true;
-  startBtn.style.display = 'inline-block';
-  restartBtn.style.display = 'none';
+  btn.textContent = 'Play Again';
 }
 
 function bonk(e) {
