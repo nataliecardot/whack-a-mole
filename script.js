@@ -1,15 +1,21 @@
 const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
+const displayedWinScore = document.querySelector('.win-score');
 const gameInfo = document.querySelector('.game-info');
 const timeLeft = document.querySelector('.time-left');
 const moles = document.querySelectorAll('.mole');
 const btn = document.querySelector('.btn');
+const overlay = document.querySelector('.overlay');
+
 let beginTimestamp,
   endTimestamp,
   countdown,
   lastHole,
   score = 0,
+  winScore = 8,
   timeUp = false;
+
+displayedWinScore.textContent = winScore;
 
 function randomTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -40,10 +46,11 @@ function peep() {
 }
 
 function startGame() {
+  overlay.style.display = 'none';
   scoreBoard.textContent = 0;
   beginTimestamp = Math.floor(Date.now() / 1000); // Dividing by 1000 to get s from ms
   gameInfo.style.display = 'inline';
-  endTimestamp = beginTimestamp + 15;
+  endTimestamp = beginTimestamp + 20;
   // Setting here in addition to in set interval so time appears in time remaining immediately
   timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
   timeUp = false;
@@ -52,10 +59,18 @@ function startGame() {
   peep();
   let countdown = setInterval(() => {
     timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
+    if (score === winScore) {
+      winGame();
+    }
     if (endTimestamp - Math.floor(Date.now() / 1000) <= 0) {
       endGame();
     }
   }, 1000);
+}
+
+function winGame() {
+  overlay.style.display = 'flex';
+  endGame();
 }
 
 function endGame() {
