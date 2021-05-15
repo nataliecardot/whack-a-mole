@@ -23,7 +23,7 @@ function randomHole(holes) {
 
 function peep() {
   // Amount of time mole is popped up
-  const time = randomTime(300, 1100);
+  const time = randomTime(500, 1100);
   const hole = randomHole(holes);
   // Sets top to 0 in CSS, which animates it because by default it has top of 100%
   hole.classList.add('up');

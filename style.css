@@ -16,20 +16,47 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Amatic SC', cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 h1 {
-  text-align: center;
   font-size: 10rem;
   line-height: 1;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .score {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.5);
   padding: 0 3rem;
   line-height: 1;
   border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+.start-btn {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  font-size: 1.75rem;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+  position: absolute;
+  margin-left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  transform: perspective(1px);
+  transition: 0.3s;
+}
+
+.start-btn:hover,
+.start-btn.active {
+  transform: scale(0.9);
 }
 
 .game {
@@ -70,4 +97,5 @@ h1 {
 
 .hole.up .mole {
   top: 0;
+  cursor: pointer;
 }
