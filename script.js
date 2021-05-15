@@ -23,7 +23,7 @@ function randomHole(holes) {
 
 function peep() {
   // Amount of time mole is popped up
-  const time = randomTime(500, 1100);
+  const time = randomTime(500, 1300);
   const hole = randomHole(holes);
   // Sets top to 0 in CSS, which animates it because by default it has top of 100%
   hole.classList.add('up');
@@ -38,7 +38,7 @@ function startGame() {
   timeUp = false;
   score = 0;
   peep();
-  setTimeout(() => (timeUp = true), 15000);
+  setTimeout(() => (timeUp = true), 20000);
 }
 
 function bonk(e) {
@@ -53,3 +53,4 @@ function bonk(e) {
 }
 
 moles.forEach((mole) => mole.addEventListener('click', bonk));
+moles.forEach((mole) => mole.addEventListener('touch', bonk));
