@@ -24,21 +24,20 @@ body {
 }
 
 h1 {
-  font-size: 10rem;
+  font-size: 8rem;
   line-height: 1;
-  margin: 0;
+  margin: 0 0 3rem;
 }
 
 .score {
   background: rgba(255, 255, 255, 0.5);
   padding: 0 3rem;
-  line-height: 1;
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
 .btn {
-  background: white;
+  background: #fff;
   border-radius: 1rem;
   padding: 1.5rem 2rem;
   font-size: 1.75rem;
@@ -50,12 +49,16 @@ h1 {
   top: 50%;
   transform: translateY(-50%);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
-.btn:hover,
-.btn.active {
+.btn:hover {
   transform: translateY(-50%) scale(0.9);
+}
+
+.btn:active {
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
 }
 
 .restart-btn {
@@ -67,7 +70,6 @@ h1 {
   height: 400px;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
 }
 
 .hole {
