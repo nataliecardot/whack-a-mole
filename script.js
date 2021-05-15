@@ -8,7 +8,6 @@ let beginTimestamp,
   endTimestamp,
   countdown,
   lastHole,
-  numSecondsRemaining,
   score = 0,
   timeUp = false;
 
@@ -46,16 +45,14 @@ function startGame() {
   gameInfo.style.display = 'inline';
   endTimestamp = beginTimestamp + 15;
   // Setting here in addition to in set interval so time appears in time remaining immediately
-  numSecondsRemaining = endTimestamp - Math.floor(Date.now() / 1000);
-  timeLeft.textContent = numSecondsRemaining;
+  timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
   timeUp = false;
   score = 0;
   btn.textContent = 'Restart';
   peep();
   let countdown = setInterval(() => {
-    numSecondsRemaining = endTimestamp - Math.floor(Date.now() / 1000);
-    timeLeft.textContent = numSecondsRemaining;
-    if (numSecondsRemaining <= 0) {
+    timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
+    if (endTimestamp - Math.floor(Date.now() / 1000) <= 0) {
       endGame();
     }
   }, 1000);
@@ -63,8 +60,7 @@ function startGame() {
 
 function endGame() {
   clearInterval(countdown);
-  numSecondsRemaining = 0;
-  timeLeft.textContent = numSecondsRemaining;
+  timeLeft.textContent = 0;
   timeUp = true;
   btn.textContent = 'Play Again';
 }
