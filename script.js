@@ -1,11 +1,17 @@
 const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
+const gameInfo = document.querySelector('.game-info');
+const timeLeft = document.querySelector('.time-left');
 const moles = document.querySelectorAll('.mole');
 const startBtn = document.querySelector('.start-btn');
 const restartBtn = document.querySelector('.restart-btn');
-let lastHole,
-  timeUp = false,
-  score = 0;
+let beginTimestamp, // Dividing by 1000 to get s from ms
+  endTimestamp,
+  countdown,
+  lastHole,
+  numSecondsRemaining,
+  score = 0,
+  timeUp = false;
 
 function randomTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -37,16 +43,33 @@ function peep() {
 
 function startGame() {
   scoreBoard.textContent = 0;
+  beginTimestamp = Math.floor(Date.now() / 1000);
+  gameInfo.style.display = 'inline';
+  endTimestamp = beginTimestamp + 5;
+  // Setting here in addition to in set interval so time appears in time remaining immediately
+  numSecondsRemaining = endTimestamp - Math.floor(Date.now() / 1000);
+  timeLeft.textContent = numSecondsRemaining;
   timeUp = false;
   score = 0;
   startBtn.style.display = 'none';
   restartBtn.style.display = 'inline-block';
   peep();
-  setTimeout(() => {
-    timeUp = true;
-    startBtn.style.display = 'inline-block';
-    restartBtn.style.display = 'none';
-  }, 20000);
+  let countdown = setInterval(() => {
+    numSecondsRemaining = endTimestamp - Math.floor(Date.now() / 1000);
+    timeLeft.textContent = numSecondsRemaining;
+    if (numSecondsRemaining <= 0) {
+      endGame();
+    }
+  }, 1000);
+}
+
+function endGame() {
+  clearInterval(countdown);
+  numSecondsRemaining = 0;
+  timeLeft.textContent = numSecondsRemaining;
+  timeUp = true;
+  startBtn.style.display = 'inline-block';
+  restartBtn.style.display = 'none';
 }
 
 function bonk(e) {
