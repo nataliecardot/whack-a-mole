@@ -13,8 +13,10 @@ let beginTimestamp,
   countdown,
   lastHole,
   lastMsgIdx,
+  lastSoundIdx,
+  sound,
   score = 0,
-  winScore = 8,
+  winScore = 10,
   timeUp = false;
 
 displayedWinScore.textContent = winScore;
@@ -75,7 +77,7 @@ function setMsg() {
     'Winner, winner, chicken dinner!',
     "You knocked 'em dead!",
     'Champion!',
-    'Felicitations!',
+    'Felicitations, you won!',
     'Nice one!',
   ];
   const loseMessages = [
@@ -103,10 +105,34 @@ function setMsg() {
 function endGame() {
   clearInterval(countdown);
   setMsg();
+  // Sound wouldn't be truthy if 0 moles whacked and thus sound never was set to audio instance
+  if (sound) sound.pause();
   overlay.style.display = 'flex';
   timeLeft.textContent = 0;
   timeUp = true;
   btn.textContent = 'Play Again';
+}
+
+function playSound() {
+  const sounds = [
+    'sounds/grunt1.mp3',
+    'sounds/grunt2.mp3',
+    'sounds/grunt3.mp3',
+  ];
+  let randomIdx = Math.floor(Math.random() * sounds.length);
+  if (randomIdx === lastSoundIdx) {
+    return playSound();
+  }
+  lastSoundIdx = randomIdx;
+  if (sound && sound.paused === false) {
+    sound.pause();
+    sound.currentTime = 0;
+    sound = new Audio(sounds[randomIdx]);
+    sound.play();
+  } else {
+    sound = new Audio(sounds[randomIdx]);
+    sound.play();
+  }
 }
 
 function bonk(e) {
@@ -115,6 +141,7 @@ function bonk(e) {
   // console.log('this is', this);
   // console.log('parent node is', this.parentNode);
   score++;
+  playSound();
   // parent node is div with class of hole, which had up added
   this.parentNode.classList.remove('up');
   scoreBoard.textContent = score;
