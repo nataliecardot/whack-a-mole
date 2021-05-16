@@ -51,14 +51,14 @@ function startGame() {
   scoreBoard.textContent = 0;
   beginTimestamp = Math.floor(Date.now() / 1000); // Dividing by 1000 to get s from ms
   gameInfo.style.display = 'inline';
-  endTimestamp = beginTimestamp + 20;
+  endTimestamp = beginTimestamp + 2;
   // Setting here in addition to in set interval so time appears in time remaining immediately
   timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
   timeUp = false;
   score = 0;
   btn.textContent = 'Restart';
   peep();
-  let countdown = setInterval(() => {
+  countdown = setInterval(() => {
     timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
     if (
       score === winScore ||
@@ -70,6 +70,7 @@ function startGame() {
 }
 
 function endGame() {
+  console.log('inendgame');
   overlay.style.display = 'flex';
   if (score === winScore) {
     overlayMsg.innerText = 'Winner, winner, chicken dinner!';
