@@ -12,6 +12,7 @@ let beginTimestamp,
   endTimestamp,
   countdown,
   lastHole,
+  lastMsgIdx,
   score = 0,
   winScore = 8,
   timeUp = false;
@@ -51,7 +52,7 @@ function startGame() {
   scoreBoard.textContent = 0;
   beginTimestamp = Math.floor(Date.now() / 1000); // Dividing by 1000 to get s from ms
   gameInfo.style.display = 'inline';
-  endTimestamp = beginTimestamp + 2;
+  endTimestamp = beginTimestamp + 20;
   // Setting here in addition to in set interval so time appears in time remaining immediately
   timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
   timeUp = false;
@@ -69,15 +70,40 @@ function startGame() {
   }, 1000);
 }
 
-function endGame() {
-  console.log('inendgame');
-  overlay.style.display = 'flex';
-  if (score === winScore) {
-    overlayMsg.innerText = 'Winner, winner, chicken dinner!';
-  } else {
-    overlayMsg.innerText = 'Butter my butt and call me a biscuit... You lost!';
+function setMsg() {
+  const winMessages = [
+    'Winner, winner, chicken dinner!',
+    "You knocked 'em dead!",
+    'Champion!',
+    'Felicitations!',
+    'Nice one!',
+  ];
+  const loseMessages = [
+    'Better luck next time!',
+    'Drat, you lost!',
+    'Butter my butt and call me a biscuit... You lost!',
+    'Doggone it, you lost!',
+    'Cripes, you lost!',
+  ];
+  let randomIdx = Math.floor(
+    Math.random() *
+      (score === winScore ? winMessages.length : loseMessages.length)
+  );
+  if (randomIdx === lastMsgIdx) {
+    return setMsg();
   }
+  lastMsgIdx = randomIdx;
+  if (score === winScore) {
+    overlayMsg.innerText = winMessages[randomIdx];
+  } else {
+    overlayMsg.innerText = loseMessages[randomIdx];
+  }
+}
+
+function endGame() {
   clearInterval(countdown);
+  setMsg();
+  overlay.style.display = 'flex';
   timeLeft.textContent = 0;
   timeUp = true;
   btn.textContent = 'Play Again';
