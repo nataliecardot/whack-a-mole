@@ -7,6 +7,8 @@ const moles = document.querySelectorAll('.mole');
 const btn = document.querySelector('.btn');
 const overlay = document.querySelector('.overlay');
 const overlayMsg = document.querySelector('.overlay p');
+const initialCountdown = document.querySelector('.pregame-countdown-text');
+const initialCountdownBg = document.querySelector('.pregame-countdown-bg');
 
 let beginTimestamp,
   endTimestamp,
@@ -50,24 +52,48 @@ function peep() {
 }
 
 function startGame() {
+  // Stops peep() since its setTimeout stops recursively calling itself when timeUp is true
+  timeUp = true;
+  // Wait for mole that's popped up to go back down before initial countdown
+  holes.forEach(
+    (hole) => hole.classList.contains('up') && hole.classList.remove('up')
+  );
+  timeLeft.textContent = 0;
+  let num = 4;
+  initialCountdown.style.opacity = '0';
+  btn.style.display = 'none';
+  gameInfo.style.display = 'none';
+  initialCountdownBg.style.display = 'block';
   overlay.style.display = 'none';
   scoreBoard.textContent = 0;
-  beginTimestamp = Math.floor(Date.now() / 1000); // Dividing by 1000 to get s from ms
-  gameInfo.style.display = 'inline';
-  endTimestamp = beginTimestamp + 20;
-  // Setting here in addition to in set interval so time appears in time remaining immediately
-  timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
-  timeUp = false;
-  score = 0;
-  btn.textContent = 'Restart';
-  peep();
-  countdown = setInterval(() => {
-    timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
-    if (
-      score === winScore ||
-      endTimestamp - Math.floor(Date.now() / 1000) <= 0
-    ) {
-      endGame();
+  let pregameCountdown = setInterval(() => {
+    num--;
+    // opacity is 0 at first. text is set, then opacity is set to 1; fades in.
+    initialCountdown.textContent = num;
+    initialCountdown.style.opacity = '1';
+    if (num < 1) {
+      btn.style.display = 'inline-block';
+      initialCountdown.textContent = '';
+      initialCountdownBg.style.display = 'none';
+      clearInterval(pregameCountdown);
+      beginTimestamp = Math.floor(Date.now() / 1000); // Dividing by 1000 to get s from ms
+      gameInfo.style.display = 'inline';
+      endTimestamp = beginTimestamp + 20;
+      // Setting here in addition to in set interval so time appears in time remaining immediately
+      timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
+      timeUp = false;
+      score = 0;
+      btn.textContent = 'Restart';
+      peep();
+      countdown = setInterval(() => {
+        timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);
+        if (
+          score === winScore ||
+          endTimestamp - Math.floor(Date.now() / 1000) <= 0
+        ) {
+          endGame();
+        }
+      }, 1000);
     }
   }, 1000);
 }
