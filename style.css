@@ -4,6 +4,11 @@ html {
   background: #ffc600;
 }
 
+/* Prevent text flicker due to Google font import https://schneider.xyz/2019/08/13/fix-font-flickering-on-load-when-using-google-fonts/ */
+html.wf-loading * {
+  opacity: 0;
+}
+
 *,
 *:before,
 *:after {
