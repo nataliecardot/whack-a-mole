@@ -191,7 +191,7 @@ h1 {
 
 /* ------------ MEDIA QUERIES ------------ */
 
-/* Mobile and tablet */
+/* Applies to mobile and tablet */
 @media screen and (max-width: 991px) {
   body {
     justify-content: space-around;
