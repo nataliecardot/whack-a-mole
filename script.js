@@ -77,7 +77,7 @@ function startGame() {
       initialCountdownBg.style.display = 'none';
       clearInterval(pregameCountdown);
       beginTimestamp = Math.floor(Date.now() / 1000); // Dividing by 1000 to get s from ms
-      gameInfo.style.display = 'inline';
+      gameInfo.style.display = 'block';
       endTimestamp = beginTimestamp + 20;
       // Setting here in addition to in set interval so time appears in time remaining immediately
       timeLeft.textContent = endTimestamp - Math.floor(Date.now() / 1000);

@@ -30,8 +30,7 @@ h1 {
 }
 
 .game-info {
-  /* TODO: comment back in */
-  /* display: none; */
+  display: none;
   background: rgba(255, 255, 255, 0.5);
   font-size: 3rem;
   padding: 2rem;
@@ -202,11 +201,14 @@ h1 {
   }
 
   .game-info {
-    display: block;
+    margin-left: 0;
+    padding: 1rem;
   }
 
   .btn {
     position: static;
+    transform: translateY(0);
+    margin-top: 1rem;
   }
 
   .top {
@@ -214,6 +216,7 @@ h1 {
   }
 
   h1 {
+    font-size: 5rem;
     margin: 0 0 1rem;
   }
 
