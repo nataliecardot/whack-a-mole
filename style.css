@@ -26,6 +26,7 @@ body {
 }
 
 h1 {
+  margin: 0;
   font-size: 7rem;
 }
 
@@ -190,10 +191,10 @@ h1 {
 
 /* ------------ MEDIA QUERIES ------------ */
 
-/* Small screens */
-@media screen and (max-width: 767px) {
+/* Mobile and tablet */
+@media screen and (max-width: 991px) {
   body {
-    justify-content: space-evenly;
+    justify-content: space-around;
   }
 
   .game {
@@ -210,6 +211,7 @@ h1 {
   }
 
   .btn {
+    margin-top: 2rem;
     position: static;
     transform: translateY(0);
   }
@@ -220,7 +222,7 @@ h1 {
 
   h1 {
     font-size: 5rem;
-    margin: 0 0 1rem;
+    margin: 0 0 2rem;
   }
 
   .overlay p {
