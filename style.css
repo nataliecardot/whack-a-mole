@@ -20,21 +20,24 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 7rem;
-  margin: 0 0 3rem;
+.top {
   display: flex;
   align-items: center;
 }
 
+h1 {
+  font-size: 7rem;
+}
+
 .game-info {
-  display: none;
+  /* TODO: comment back in */
+  /* display: none; */
   background: rgba(255, 255, 255, 0.5);
   font-size: 3rem;
-  margin-left: 2rem;
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  margin-left: 1rem;
 }
 
 .btn {
@@ -112,170 +115,6 @@ h1 {
 
 .overlay button:hover {
   transform: scale(0.9);
-}
-
-.restart-btn {
-  display: none;
-}
-
-.game {
-  width: 600px;
-  height: 400px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.hole {
-  flex: 1 0 33.33%;
-  overflow: hidden;
-  position: relative;
-}
-
-.hole:after {
-  display: block;
-  background: url(dirt.svg) bottom center no-repeat;
-  background-size: contain;
-  content: '';
-  width: 100%;
-  height: 70px;
-  position: absolute;
-  z-index: 2;
-  bottom: -30px;
-}
-
-.mole {
-  background: url('mole.svg') bottom center no-repeat;
-  background-size: 60%;
-  position: absolute;
-  top: 100%;
-  width: 100%;
-  height: 100%;
-  transition: 0.4s;
-}
-
-.hole.up .mole {
-  top: 0;
-  cursor: pointer;
-}
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
-
-html {
-  box-sizing: border-box;
-  font-size: 10px;
-  background: #ffc600;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-body {
-  margin: 0;
-  font-family: 'Amatic SC', cursive;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 7rem;
-  margin: 0 0 3rem;
-  display: flex;
-  align-items: center;
-}
-
-.game-info {
-  display: none;
-  background: rgba(255, 255, 255, 0.5);
-  font-size: 3rem;
-  margin-left: 2rem;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-}
-
-.btn {
-  background: #fff;
-  border-radius: 1rem;
-  padding: 1.5rem 2rem;
-  font-size: 1.75rem;
-  border: none;
-  cursor: pointer;
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  transition: 0.5s;
-}
-
-.btn:hover {
-  transform: translateY(-50%) scale(0.9);
-}
-
-.btn:active {
-  background: rgba(0, 0, 0, 0.75);
-  color: #fff;
-}
-
-.how-to-win {
-  background: rgba(255, 255, 255, 0.5);
-  padding: 1rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font: sans-serif;
-  font-size: 3.5rem;
-  width: 120px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  border-radius: 5px 0 0 0;
-}
-
-.overlay {
-  position: fixed; /* Sit on top of the page content */
-  width: 100%;
-  height: 100%;
-  background: #fff; /* Black background with opacity */
-  border-radius: 10px;
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.overlay p {
-  font-size: 10rem;
-  max-width: 60%;
-  margin: 0 0 2rem;
-  text-align: center;
-}
-
-.overlay button {
-  background: #000;
-  color: #fff;
-  border-radius: 1rem;
-  padding: 2rem 2.5rem;
-  font-size: 2rem;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  transition: 0.5s;
-}
-
-.overlay button:hover {
-  transform: scale(0.9);
-}
-
-.restart-btn {
-  display: none;
 }
 
 .game {
@@ -348,4 +187,37 @@ h1 {
   transition: opacity 1s;
   opacity: 0;
   font-family: 'Roboto', sans-serif;
+}
+
+/* ------------ MEDIA QUERIES ------------ */
+
+/* Small screens */
+@media screen and (max-width: 767px) {
+  .game {
+    width: 95%;
+  }
+
+  .how-to-win {
+    display: none;
+  }
+
+  .game-info {
+    display: block;
+  }
+
+  .btn {
+    position: static;
+  }
+
+  .top {
+    flex-direction: column;
+  }
+
+  h1 {
+    margin: 0 0 1rem;
+  }
+
+  .overlay p {
+    font-size: 7rem;
+  }
 }
