@@ -192,6 +192,10 @@ h1 {
 
 /* Small screens */
 @media screen and (max-width: 767px) {
+  body {
+    justify-content: space-evenly;
+  }
+
   .game {
     width: 95%;
   }
@@ -208,7 +212,6 @@ h1 {
   .btn {
     position: static;
     transform: translateY(0);
-    margin-top: 1rem;
   }
 
   .top {
